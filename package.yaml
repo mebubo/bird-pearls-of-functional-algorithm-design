@@ -1,0 +1,8 @@
+name: bird-pearls-of-functional-algorithm-design
+
+dependencies:
+    - base
+    - array
+
+library:
+    source-dirs: src
