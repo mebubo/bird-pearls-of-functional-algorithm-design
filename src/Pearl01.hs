@@ -5,10 +5,12 @@ import Data.List ((\\), partition)
 import Data.Array (Array, Ix, elems, accumArray, assocs)
 import Data.Array.ST (runSTArray, newArray, writeArray)
 
-minfree :: [Natural] -> Natural
+type Minfree = [Natural] -> Natural
+
+minfree :: Minfree
 minfree xs = head $ [0..] \\ xs
 
-minfree' :: [Natural] -> Natural
+minfree' :: Minfree
 minfree' = search . checklist
 
 polyLength :: Num b => [a] -> b
@@ -34,7 +36,7 @@ checklist' xs = runSTArray $ do
     return a
     where n = length xs
 
-minfree'' :: [Natural] -> Natural
+minfree'' :: Minfree
 minfree'' xs = minfrom 0 (polyLength xs, xs)
 
 minfrom :: Natural -> (Natural, [Natural]) -> Natural
